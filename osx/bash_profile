@@ -1,2 +1,20 @@
 alias cask="brew cask"
-alias dev="cd ~/Dropbox/dev"
+alias dev="cd ~/dev"
+
+Color_Off="\[\033[0m\]"
+Cyan="\[\033[0;36m\]"
+Green="\[\033[0;32m\]"
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    source $(brew --prefix)/etc/bash_completion
+fi
+export PS1="\t:$Cyan\W$Color_Off\$(__git_ps1 \"$Green (%s)$Color_Off\") \$ "
+
+function dadd()
+{
+  if [ "$1" ]
+  then
+   ln -s $1 ~/dev
+  else
+   ls -s * ~/dev
+  fi
+}

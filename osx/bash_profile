@@ -1,5 +1,7 @@
 alias cask="brew cask"
 alias dev="cd ~/dev"
+alias got="git"
+alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
 Color_Off="\[\033[0m\]"
 Cyan="\[\033[0;36m\]"
@@ -9,12 +11,34 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 export PS1="\t:$Cyan\W$Color_Off\$(__git_ps1 \"$Green (%s)$Color_Off\") \$ "
 
-function dadd()
+kp() {
+    kill -9 `ps -ef | grep $1 | grep -v grep | awk '{print $2}'`
+}
+
+dadd()
 {
-  if [ "$1" ]
-  then
-   ln -s $1 ~/dev
+  if [ -z "$1" ]; then
+    ln -s * ~/dev
+    echo "Symlinks created for all files in this directory"
   else
-   ls -s * ~/dev
+    ln -s $1 ~/dev
+    echo "Symlink created for $1"
   fi
+}
+
+authors () {
+ NAMES="git log --format=format:\"%an\""
+ if [ $# != 0 ]
+ then
+     NAMES="$NAMES $1"
+ fi
+ eval $NAMES | sort | uniq -c | sort -nr | less
+}
+
+
+loc () {
+    git log --author="$1" --pretty=tformat: --numstat | \
+        grep -v public/javascripts/jquery | \
+        awk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END \
+        { printf "added lines: %s removed lines : %s total lines: %s\n",add,subs,loc }' -
 }

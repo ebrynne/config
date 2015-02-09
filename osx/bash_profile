@@ -17,10 +17,10 @@ kp() {
 dadd()
 {
   if [ -z "$1" ]; then
-    ln -s * ~/dev
+    ln -s ${PWD}/* ~/dev
     echo "Symlinks created for all files in this directory"
   else
-    ln -s $1 ~/dev
+    ln -s ${PWD}/$1 ~/dev
     echo "Symlink created for $1"
   fi
 }

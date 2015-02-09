@@ -1,7 +1,6 @@
 alias cask="brew cask"
 alias dev="cd ~/dev"
 alias got="git"
-alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
 Color_Off="\[\033[0m\]"
 Cyan="\[\033[0;36m\]"

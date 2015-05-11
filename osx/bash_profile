@@ -41,3 +41,11 @@ loc () {
         awk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END \
         { printf "added lines: %s removed lines : %s total lines: %s\n",add,subs,loc }' -
 }
+
+alias bx="bundle exec"
+alias ..='cd ..'
+alias ls='ls --color=auto'
+alias l.='ls -d .* --color=auto'
+alias h='history'
+alias now='date +"%T"'
+alias ping='ping -c 5'

@@ -44,8 +44,8 @@ loc () {
 
 alias bx="bundle exec"
 alias ..='cd ..'
-alias ls='ls --color=auto'
-alias l.='ls -d .* --color=auto'
+alias ls='ls -G'
+alias l.='ls -d .* -G'
 alias h='history'
 alias now='date +"%T"'
 alias ping='ping -c 5'
